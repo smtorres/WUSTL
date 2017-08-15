@@ -40,7 +40,9 @@ text_3_n = ngrams(text_3, 4)
 
 
 
-stop_words = urlopen('http://jmlr.org/papers/volume5/lewis04a/a11-smart-stop-list/english.stop').read().split('\n')
+stop_link = urlopen('http://www.lextek.com/manuals/onix/stopwords1.html').read()
+stop_soup = BeautifulSoup(stop_link)
+stop_words = [x for x in stop_soup.find('pre').text.split('\n')[12:] if x!=""]
 
 ##we can then identify the stop words and then eliminate them from the list
 
